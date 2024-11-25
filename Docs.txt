@@ -1,7 +1,17 @@
-Idea principal:
-    Una vista de listado ofrece (lo que sea que pueda pedir a la API).
-    Un botón permite buscar (lo que sea que pueda pedir a la API) específico.
-
 commands:
-    git commit -m <message>
-    git push -u origin main
+    npx express-generator
+    npm install
+
+    npm install body-parser --save
+
+    npm install cors --save
+    npm install nodemon --save-dev
+
+
+npx express-generator es un Auto-generador de plantilla node express
+
+Body-parser es un middleware para traducir el body de la request
+
+-- Recursos de dependencias propias
+    Nodemon es un monitor de cambios y auto-reinicio de servidor. Development tool only.
+    cors es un middleware de seguridad, o algo así.

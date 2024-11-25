@@ -1,0 +1,7 @@
+Idea principal:
+    Una vista de listado ofrece (lo que sea que pueda pedir a la API).
+    Un botón permite buscar (lo que sea que pueda pedir a la API) específico.
+
+commands:
+    git commit -m <message>
+    git push -u origin main

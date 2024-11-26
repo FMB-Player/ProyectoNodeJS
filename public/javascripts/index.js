@@ -3,7 +3,7 @@ const KEY_PRIVATE = '31815d4440e266e989eb16be6959c875684ae745'
 const API = 'https://gateway.marvel.com:443/v1/public/';
 var ts = new Date().getTime();
 var hash = GenerateHash(ts + KEY_PRIVATE + KEY_PUBLIC).toString();
-// FIXME: El hash no es válido.
+// FIXME: El hash no es válido. Buscar una forma de usar los recursos de CryptoJS.MD5().
 
 document.addEventListener('DOMContentLoaded', cargarPersonajes);
 

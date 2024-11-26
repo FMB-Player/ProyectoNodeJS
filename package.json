@@ -4,6 +4,7 @@
   "author": "Balella Franco",
   "description": "Proyecto NodeJS con Express",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"

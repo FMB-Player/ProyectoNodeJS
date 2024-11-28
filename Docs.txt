@@ -6,6 +6,7 @@ commands:
 
     npm install cors --save
     npm install nodemon --save-dev
+    npm install crypto-js --save
 
 
 npx express-generator es un Auto-generador de plantilla node express
@@ -15,3 +16,4 @@ Body-parser es un middleware para traducir el body de la request
 -- Recursos de dependencias propias
     Nodemon es un monitor de cambios y auto-reinicio de servidor. Development tool only.
     cors es un middleware de seguridad, o algo así.
+    crypto-js es para crear hash md5 para la API.

@@ -1,11 +1,44 @@
+:root {
+  --article-radius: 10px;
+}
+
+* {
+  margin: 0;
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+a.personaje_name {
+  color: #fff;
+  text-align: center;
+  padding: 0.5em;
+  background-color: #000;
+  border-bottom-left-radius: var(--article-radius);
+  border-bottom-right-radius: var(--article-radius);
 }
-li {
-  list-style-type: none;
+
+#listado {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+article.personaje_banner {
+  display: inline-grid;
+  border: 1px solid black;
+  border-radius: var(--article-radius);
+  width: min-content;
+  --ArticleWidth: 300px;
+  height: var(--ArticleWidth);
+  margin: 1em auto;
+}
+
+img.personaje_img {
+  height: calc(var(--ArticleWidth) - 2em);
+  width: calc(var(--ArticleWidth) - 2em);
+  border-top-left-radius: var(--article-radius);
+  border-top-right-radius: var(--article-radius);
+  object-fit: cover;
+  object-position: center;
 }

@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título de la página</title>
+    <title>MARVEL by Balella Franco</title>
+    <!-- Estilos generales -->
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- Estilos de recursos -->
+    <link rel="stylesheet" href="stylesheets/resource.css">
+    <!-- Script de injección de recursos -->
+    <script src="/javascripts/resources.js"></script>
+    <!-- Herramienta de api.js -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <!-- Rutas de backend -->
     <script defer src="/javascripts/api.js"></script>
-    <script defer src="/javascripts/index.js"></script>
+    <!-- Script de index -->
+    <script src="/javascripts/index.js"></script>
 </head>
+
 <body>
-    <h1>Esto es la página de inicio</h1>
-    <h2>Esto es la segunda parte</h2>
-    <button type="button" id="test">TESTEAR</button>
+    <!-- placeholder para menu -->
+    <header id="menu"></header>
+    <h1>Proyecto NodeJS de Balella Franco</h1>
+    <h2>Listado de personajes</h2>
     <p>Personajes:</p>
-    <ul id="personajes"></ul>
+    <!-- placeholder para listado -->
+    <div id="listado"></div>
+    <!-- placeholder para footer -->
+    <footer id="footer"></footer>
 </body>
+
 </html>

@@ -1,0 +1,95 @@
+/* General resource */
+
+    :root {
+        --NavBarHeight: 50px;
+        --outskirt-color: #0f85dc;
+    }
+
+    body {
+        margin: 0;
+    }
+
+/* General resource */
+
+/* Menu style */
+
+    .menu img {
+        height: var(--NavBarHeight);
+    }
+
+    #header {
+    height: var(--NavBarHeight);
+    }
+
+    .menu {
+        
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        align-items: center;
+        background-color: var(--outskirt-color);
+        height: var(--NavBarHeight);
+        margin: 0;
+        position: sticky;
+        top: 0;
+    }
+
+    .menu_element {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 5px;
+        display: inline-block;
+        padding: 8px 10px;
+        background-color: black;
+        border-radius: 9px;
+    }
+
+    .menu_element:hover, .active {
+        background-color: #fff;
+        cursor: pointer;
+        color: black;
+        transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .menu_list {
+        display: inherit;
+        margin: 0;
+        margin-right: 10px;
+        list-style-type: none;
+        justify-content: flex-end;
+
+    }
+
+/* Menu style */
+
+/* Footer style */
+
+    #footer {
+    background-color: var(--outskirt-color);
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    }
+
+    #copyright {
+
+        color: #fff;
+    }
+
+/* Footer style */
+
+/* Misc */
+
+    .TrueHidden {
+        display: none;
+    }
+
+    .hidden {
+        display: hidden;
+    }

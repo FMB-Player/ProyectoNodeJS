@@ -48,7 +48,7 @@ function generarPersonajes(data) {
         article.appendChild(a);
         listado.appendChild(article);
 
-        resultados.textContent = 'Resultados: ' + (data.data.offset + 1) + ' - ' + (data.data.count + data.data.offset + 1) + "/" + (data.data.total + 1);
+        resultados.textContent = 'Resultados: ' + (data.data.offset + 1) + ' - ' + (data.data.count + data.data.offset) + "/" + (data.data.total);
     });
 }
 

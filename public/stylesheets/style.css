@@ -15,7 +15,23 @@ body {
   margin: 1%;
 }
 
-/* Estilo de formulario buscador */
+/* Estilo de formulario buscador (Y select categorías) */
+
+  .category {
+    display: flex;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: var(--article-radius);
+    width: fit-content;
+  }
+
+  .category select {
+    border: none;
+    border-bottom: 1px solid black;
+    /* color: #888; */
+  }
 
   form#buscador fieldset {
     display: grid;
@@ -28,12 +44,12 @@ body {
     border-radius: var(--article-radius);
   }
 
-  form#buscador #submit {
+  form#buscador input[type="submit"] {
     justify-self: start;
     align-self: start;
   }
 
-/* Estilo de formulario buscador */
+/* Estilo de formulario buscador (Y select categorías) */
 
 /* Estilo de visualizador de personajes */
 

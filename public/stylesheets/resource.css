@@ -88,9 +88,9 @@
 /* Misc */
 
     .TrueHidden {
-        display: none;
+        display: none !important;
     }
 
     .hidden {
-        display: hidden;
+        display: hidden !important;
     }

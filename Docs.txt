@@ -17,6 +17,15 @@ Body-parser es un middleware para traducir el body de la request
     cors es un middleware de seguridad, o algo así.
     crypto-js es para crear hash md5 para la API.
 
+-- Documentación:
+    *Un archivo .gitignore evita que git tome en cuenta los archivos creados mediante npm install a la hora de crear el repertorio del proyecto.
+    Primero se crearon varios archivos de plantilla al usar npx express-generator, incluyendo todas las carpetas y los archivos www, package.json, archivos de rutas y vistas en Jade (en su mayoría borrados o altamente modificados), incluyendo elementos de "user" e "index" que no son utilizados en el proyecto y por tanto fueron borrados.
+    Tras la base de qué se quiere hacer se definen dependencias, algunas importadas directamente por la plantilla de express-generator y otras importadas mediante npm install (Indicado en commands). (Crypto-js fue inicialmente incluido para usarlo de recurso local pero por problemas se terminó usando un script defer para traer el recurso al lado del cliente, por tan mal que eso suene).
+    /Public fue definida como carpeta estática de recursos (hecho por express-generator, pero conservado de todos modos). /Public contiene los recursos de imágenes, js, css y componentes generales (header y footer).
+    Routes contiene un único router que debería seccionarse en rutas de vistas, recursos y backend (al igual que recursos de js de front y back, pero poco tiempo y organización en una sola persona puede hacer caos si se separan en medio del proceso y no quería arriesgar romper todo (lo voy a arreglar en el futuro, ya estoy invertido en el proyecto y consumir la API hasta donde pueda)).
+    /views contiene las vistas de la web (index, personaje, etc.), pero en la etapa actual sólo tiene /personajes/index, y está en la carpeta raíz de vistas (otra vez, el tema de tiempo y organización).
+    Al iniciar el servidor se entra a bin/www, que contiene información que cuasi-entiendo, que luego comunica con app.js, que tiene información que entiendo relativamente mejor, y de ahí va a routes y a los archivos que yo creé. Por inicio de envía a la pantalla principal/de bienvenida (el index de personajes) la vista (HTML file) importa múltiples recursos, incluyendo los componentes generales mediante el script de inyección de recursos, múltiples css para todos los recursos estilizados, recursos de Crypto, script de la vista actual y los scripts de API (otra vez, soy consiente que debería estar en backend, pero quiero entregar y después lo voy a arreglar, no quiero romper algo que funciona tan cerca de la fecha límite).
+
 # TODO: Vista de personaje ID.
 # TODO: Vista general de comics, creators, events, series, stories
 # TODO: Vista de (comics, creators, events, series, stories) ID.

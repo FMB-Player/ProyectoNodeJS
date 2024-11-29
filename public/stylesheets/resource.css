@@ -3,6 +3,7 @@
     :root {
         --NavBarHeight: 50px;
         --outskirt-color: #0f85dc;
+        --footer-height: 50px;
     }
 
     body {
@@ -71,11 +72,13 @@
         justify-content: space-around;
         align-items: center;
         width: 100%;
-        height: 50px;
+        height: var(--footer-height);
         flex-direction: row;
         flex-wrap: nowrap;
         align-content: space-between;
         flex-basis: calc(50% - 1em);
+        position: relative;
+        min-height: var(--footer-height);
     }
 
     #footer a, #footer #copyright {

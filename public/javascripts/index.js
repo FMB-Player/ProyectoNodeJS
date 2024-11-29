@@ -17,8 +17,11 @@ async function cargarPersonajes() {
 
 function generarPersonajes(data) {
     const listado = document.getElementById('listado');
+    const resultados = document.getElementById('resultados');
     const results = data.data.results;
     if (results.length === 0) {
+        resultados.textContent = '';
+        listado.innerHTML = '';
         generarError('No se encontraron personajes.', listado);
         return;
     }
@@ -45,7 +48,6 @@ function generarPersonajes(data) {
         article.appendChild(a);
         listado.appendChild(article);
 
-        const resultados = document.getElementById('resultados');
         resultados.textContent = 'Resultados: ' + (data.data.offset + 1) + ' - ' + (data.data.count + data.data.offset + 1) + "/" + (data.data.total + 1);
     });
 }

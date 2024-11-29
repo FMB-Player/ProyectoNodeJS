@@ -1,6 +1,6 @@
 /**
  * Importa el recurso HTML pasado como parámetro y lo inserta en el nodo con el id especificado.
- * @param {string} resource - El nombre del archivo HTML que se va a importar desde la carpeta "/resources", sin la ruta ni extensión de archivo.
+ * @param {string} resource - El nombre del archivo HTML que se va a importar desde la carpeta "/resources", sin la ruta anterior a "/resources" ni extensión de archivo.
  * @param {string} destination - El id del nodo donde se va a insertar el recurso. Si no se especifica, se utilizará el nombre del recurso.
  */
 async function ImportResource(resource, destination = resource) {

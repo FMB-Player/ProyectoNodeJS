@@ -11,6 +11,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.main {
+  margin: 1%;
+}
+
 /* Estilo de formulario buscador */
 
   form#buscador fieldset {

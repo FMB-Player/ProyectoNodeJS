@@ -21,30 +21,32 @@
 <body>
     <!-- placeholder para menu -->
     <header id="menu"></header>
-    <h1>Proyecto NodeJS de Balella Franco</h1>
-    <h2>Listado de personajes</h2>
-    <form id="buscador">
-        <fieldset>
-            <legend>Buscar por...:</legend>
-            <label for="name">Nombre (exacto): </label>
-            <input type="text" id="name" name="name" placeholder="Iron Man" autocomplete="off"><br>
-    
-            <label for="nameStartsWith">Nombre (comienza con): </label>
-            <input type="text" id="nameStartsWith" name="nameStartsWith" placeholder="Spider" autocomplete="off"><br>
-    
-            <label for="limit">Cantidad de resultados (1-99): </label>
-            <input type="number" id="limit" name="limit" value="20" min="1" max="99" placeholder="20" autocomplete="off" required><br>
-    
-            <label for="offset">Desplazamiento: </label>
-            <input type="number" id="offset" name="offset" value="0" min="0" placeholder="0" autocomplete="off"><br>
-    
-            <input id="submit" type="submit" value="Buscar">
-        </fieldset>
-    </form>
-    <!-- Texto que muestra cuáles de los resultados se muestran -->
-    <p id="resultados"></p>
-    <!-- placeholder para listado -->
-    <div id="listado"></div>
+    <div class="main">
+        <h1>Proyecto NodeJS de Balella Franco</h1>
+        <h2>Listado de personajes</h2>
+        <form id="buscador">
+            <fieldset>
+                <legend>Buscar por...:</legend>
+                <label for="name">Nombre (exacto): </label>
+                <input type="text" id="name" name="name" placeholder="Iron Man" autocomplete="off"><br>
+        
+                <label for="nameStartsWith">Nombre (comienza con): </label>
+                <input type="text" id="nameStartsWith" name="nameStartsWith" placeholder="Spider" autocomplete="off"><br>
+        
+                <label for="limit">Cantidad de resultados (1-99): </label>
+                <input type="number" id="limit" name="limit" value="20" min="1" max="99" placeholder="20" autocomplete="off" required><br>
+        
+                <label for="offset">Desplazamiento: </label>
+                <input type="number" id="offset" name="offset" value="0" min="0" placeholder="0" autocomplete="off"><br>
+        
+                <input id="submit" type="submit" value="Buscar">
+            </fieldset>
+        </form>
+        <!-- Texto que muestra cuáles de los resultados se muestran -->
+        <p id="resultados"></p>
+        <!-- placeholder para listado -->
+        <div id="listado"></div>
+    </div>
     <!-- placeholder para footer -->
     <footer id="footer"></footer>
 </body>

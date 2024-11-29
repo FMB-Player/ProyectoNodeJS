@@ -77,8 +77,6 @@
         flex-wrap: nowrap;
         align-content: space-between;
         flex-basis: calc(50% - 1em);
-        position: relative;
-        min-height: var(--footer-height);
     }
 
     #footer a, #footer #copyright {

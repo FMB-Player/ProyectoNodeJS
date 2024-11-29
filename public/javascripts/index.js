@@ -71,7 +71,7 @@ async function buscarPersonaje(e) {
     const isNameStartsWithNotEmpty = nameStartsWith !== '';
     const isLimitNotEmpty = limit !== '';
     const isOffsetNotEmpty = offset !== '';
-    counter = 0;
+    /* counter = 0;
     errorCounter = 0;
     [isNameNotEmpty, isNameStartsWithNotEmpty, isLimitNotEmpty, isOffsetNotEmpty].forEach(rule => {
         counter++;
@@ -80,7 +80,7 @@ async function buscarPersonaje(e) {
             console.log('Campo Nº' + counter + ' recibido vacío.');
         }
     });
-    console.log(errorCounter + ' campos vacíos recibidos.');
+    console.log(errorCounter + ' campos vacíos recibidos.'); */
 
     let args = [];
     if (isNameNotEmpty) args.push('name=' + name);
@@ -88,7 +88,7 @@ async function buscarPersonaje(e) {
     if (isLimitNotEmpty) args.push('limit=' + limit);
     if (isOffsetNotEmpty) args.push('offset=' + offset);
 
-    const data = await buscarPersonajes('characters', true, ...args);
+    const data = await buscarPersonajes('characters', false, ...args);
     submit.disabled = false;
     if (data === -1) {
         generarError('Error al obtener los personajes.', formulario);

@@ -65,20 +65,20 @@
 /* Footer style */
 
     #footer {
-    background-color: var(--outskirt-color);
-    color: #fff;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: space-between;
+        background-color: var(--outskirt-color);
+        color: #fff;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: space-between;
+        flex-basis: calc(50% - 1em);
     }
 
-    #copyright {
-
+    #footer a, #footer #copyright {
         color: #fff;
     }
 

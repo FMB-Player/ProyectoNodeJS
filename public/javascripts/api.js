@@ -21,16 +21,23 @@ async function index() {
 }
 /**
  * Fetch de personajes con los filtros especificados.
+ * @param type String. El valor de tipo de fetch a hacer (characters, comics, creators, events, series, stories).
+ * @param print Bool. Si se quiere imprimir la URL en consola (false).
  * @param args String. name/nameStartsWith
  * @param args String(id). comics/series/events/stories
  * @param args String(int). limit/offset
  */
-async function buscarPersonajes(...args) {
+async function buscarPersonajes(type, print = false, ...args) {
     if (args.length == 0) {
         index()
     }
     try {
-        const response = await fetch(personajesBy(...args));
+        const response = await fetch(URLpersonajesBy(type, print, ...args), {
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+            }
+        });
         const data = await response.json();
         return data;
     } catch (error) {
@@ -57,22 +64,32 @@ function help(value = 'characters', print = false) {
 
 /**
  * Retorna la URL para obtener el listado de personajes con los filtros especificados.
+ * @param type String. El valor de tipo de fetch a hacer (characters, comics, creators, events, series, stories).
+ * @param print Bool. Si se quiere imprimir la URL en consola (false).
  * @param args String. name/nameStartsWith
  * @param args String(id). comics/series/events/stories
  * @param args String(int). limit/offset
  */
-function personajesBy(...args) {
-    let req = API;
-    let flag = false;
+function URLpersonajesBy(type, print = false, ...args) {
+    let req = API + type;
+    let hasFoundFirstElement = false;
     args.forEach(arg => {
-        if (!flag) {
+        if (!hasFoundFirstElement) {
             req += '?';
-            flag = true;
+            hasFoundFirstElement = true;
         } else {
             req += '&';
         }
         req += arg;
     });
-    req += '&apikey=' + KEY_PUBLIC + '&ts=' + ts + '&hash=' + hash;
+    if (hasFoundFirstElement) {
+        req += '&';
+    } else {
+        req += '?';
+    }
+    req += 'apikey=' + KEY_PUBLIC + '&ts=' + ts + '&hash=' + hash;
+    if (print) {
+        console.log(req);
+    }
     return req;
 }

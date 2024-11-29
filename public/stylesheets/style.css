@@ -1,5 +1,6 @@
 :root {
   --article-radius: 10px;
+  --ArticleWidth: 300px;
 }
 
 * {
@@ -10,35 +11,58 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a.personaje_name {
-  color: #fff;
-  text-align: center;
-  padding: 0.5em;
-  background-color: #000;
-  border-bottom-left-radius: var(--article-radius);
-  border-bottom-right-radius: var(--article-radius);
-}
+/* Estilo de formulario buscador */
 
-#listado {
-  display: flex;
-  flex-wrap: wrap;
-}
+  form#buscador fieldset {
+    display: grid;
+    width: fit-content;
+    align-items: start;
+    justify-content: start;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid black;
+    border-radius: var(--article-radius);
+  }
 
-article.personaje_banner {
-  display: inline-grid;
-  border: 1px solid black;
-  border-radius: var(--article-radius);
-  width: min-content;
-  --ArticleWidth: 300px;
-  height: var(--ArticleWidth);
-  margin: 1em auto;
-}
+  form#buscador #submit {
+    justify-self: start;
+    align-self: start;
+  }
 
-img.personaje_img {
-  height: calc(var(--ArticleWidth) - 2em);
-  width: calc(var(--ArticleWidth) - 2em);
-  border-top-left-radius: var(--article-radius);
-  border-top-right-radius: var(--article-radius);
-  object-fit: cover;
-  object-position: center;
-}
+/* Estilo de formulario buscador */
+
+/* Estilo de visualizador de personajes */
+
+  a.personaje_name {
+    color: #fff;
+    text-align: center;
+    padding: 0.5em;
+    background-color: #000;
+    border-bottom-left-radius: var(--article-radius);
+    border-bottom-right-radius: var(--article-radius);
+  }
+
+  #listado {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  article.personaje_banner {
+    display: inline-grid;
+    border: 1px solid black;
+    border-radius: var(--article-radius);
+    width: min-content;
+    height: var(--ArticleWidth);
+    margin: 1em auto;
+  }
+
+  img.personaje_img {
+    height: calc(var(--ArticleWidth) - 2em);
+    width: calc(var(--ArticleWidth) - 2em);
+    border-top-left-radius: var(--article-radius);
+    border-top-right-radius: var(--article-radius);
+    object-fit: cover;
+    object-position: center;
+  }
+
+/* Estilo de visualizador de personajes */

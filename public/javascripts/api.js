@@ -1,17 +1,20 @@
 const KEY_PUBLIC = 'b79f16edb36f348e91d53ef2bf364c6d';
 const KEY_PRIVATE = '31815d4440e266e989eb16be6959c875684ae745'
 const API = 'https://gateway.marvel.com:443/v1/public/';
-var ts = new Date().getTime();
+var ts = new Date().getTime().toString();
 var hash = CryptoJS.MD5(ts + KEY_PRIVATE + KEY_PUBLIC).toString();
 
 /**
  * Fetch COMPLETO del listado de personajes de la API de Marvel.
+ * Es la función principal que se llama en index.js y representa al fetch de bienvenida.
+ * @param type String. El valor de tipo de fetch a hacer (characters).
+ * @param print Bool. Si se quiere imprimir la URL en consola (false).
  * @Returns data IF successful, -1 IF error.
  */
-async function index() {
+async function index(type = 'characters', print = false) {
     // Obtener listado de personajes
     try {
-        const response = await fetch(help('characters'));
+        const response = await fetch(help(type, print));
         const data = await response.json();
         return data;
     } catch (error) {
@@ -22,27 +25,34 @@ async function index() {
 /**
  * Fetch de personajes con los filtros especificados.
  * @param type String. El valor de tipo de fetch a hacer (characters, comics, creators, events, series, stories).
- * @param print Bool. Si se quiere imprimir la URL en consola (false).
- * @param args String. name/nameStartsWith
- * @param args String(id). comics/series/events/stories
- * @param args String(int). limit/offset
+ * @param print Bool. Si se quiere imprimir la URL en consola.
+ * @param args Array. "attributeName=value"
+ * @Returns data IF successful, -1 IF error.
  */
-async function buscarPersonajes(type, print = false, ...args) {
-    if (args.length == 0) {
-        index()
-    }
-    try {
-        const response = await fetch(URLpersonajesBy(type, print, ...args), {
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-            }
-        });
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.log(error);
-        return (-1);
+async function buscarAPI(type, print, ...args) {
+    if (!args) {
+        try {
+            const response = await index(type, print);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.log(error);
+            return (-1);
+        }
+    } else {
+        try {
+            const response = await fetch(URLsearchBy(type, print, ...args), {
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                }
+            });
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.log(error);
+            return (-1);
+        }
     }
 }
 
@@ -65,12 +75,11 @@ function help(value = 'characters', print = false) {
 /**
  * Retorna la URL para obtener el listado de personajes con los filtros especificados.
  * @param type String. El valor de tipo de fetch a hacer (characters, comics, creators, events, series, stories).
- * @param print Bool. Si se quiere imprimir la URL en consola (false).
- * @param args String. name/nameStartsWith
- * @param args String(id). comics/series/events/stories
- * @param args String(int). limit/offset
+ * @param print Bool. Si se quiere imprimir la URL en consola.
+ * @param args Array. "attributeName=value"
+ * @Returns String. URL text.
  */
-function URLpersonajesBy(type, print = false, ...args) {
+function URLsearchBy(type, print, ...args) {
     let req = API + type;
     let hasFoundFirstElement = false;
     args.forEach(arg => {

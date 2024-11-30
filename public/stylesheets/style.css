@@ -30,7 +30,10 @@ body {
   .category select {
     border: none;
     border-bottom: 1px solid black;
-    /* color: #888; */
+  }
+
+  .checkLabel, input[type="checkbox"] {
+    display: inline-block;
   }
 
   form#buscador fieldset {

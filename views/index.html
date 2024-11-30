@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/images/logo.jpeg" type="image/x-icon">
     <title>MARVEL by Balella Franco</title>
     <!-- Estilos generales -->
     <link rel="stylesheet" href="/stylesheets/style.css">
@@ -23,24 +24,122 @@
     <header id="menu"></header>
     <div class="main">
         <h1>Proyecto NodeJS de Balella Franco</h1>
-        <h2>Listado de personajes</h2>
+        <h2 id="category-title">Listado de personajes</h2>
+        <!-- Selector de categoría -->
+         <div class="category">
+             <label for="category">https://gateway.marvel.com/v1/public/</label>
+             <select name="category" id="category" disabled>
+                 <option value="characters" selected>characters</option>
+                 <option value="comics">comics</option>
+                 <option value="creators">creators</option>
+                 <option value="events">events</option>
+                 <option value="series">series</option>
+                 <option value="stories">stories</option>
+             </select>
+         </div>
+        <!-- Selector de categoría -->
         <form id="buscador">
-            <fieldset>
+            <!-- characters -->
+            <fieldset id="buscador-characters">
                 <legend>Buscar por...:</legend>
-                <label for="name">Nombre (exacto): </label>
-                <input type="text" id="name" name="name" placeholder="Iron Man" autocomplete="off"><br>
+                <label for="characters-name">Nombre (exacto): </label>
+                <input type="text" id="characters-name" name="characters_name" placeholder="Iron Man" autocomplete="off" disabled><br>
         
-                <label for="nameStartsWith">Nombre (comienza con): </label>
-                <input type="text" id="nameStartsWith" name="nameStartsWith" placeholder="Spider" autocomplete="off"><br>
+                <label for="characters-nameStartsWith">Nombre (comienza con): </label>
+                <input type="text" id="characters-nameStartsWith" name="characters_nameStartsWith" placeholder="Spider" autocomplete="off" disabled><br>
         
-                <label for="limit">Cantidad de resultados (1-99): </label>
-                <input type="number" id="limit" name="limit" value="20" min="1" max="99" placeholder="20" autocomplete="off" required><br>
+                <!-- Específicamente límite causa errores si no es incluido, NiPutaIdea. -->
+                <label for="characters-limit">Cantidad de resultados (1-99): </label>
+                <input type="number" id="characters-limit" name="characters_limit" value="20" min="1" max="99" placeholder="20" autocomplete="off" disabled><br>
         
-                <label for="offset">Desplazamiento: </label>
-                <input type="number" id="offset" name="offset" value="0" min="0" placeholder="0" autocomplete="off"><br>
+                <label for="characters-offset">Desplazamiento: </label>
+                <input type="number" id="characters-offset" name="characters_offset" value="0" min="0" placeholder="0" autocomplete="off" disabled><br>
         
-                <input id="submit" type="submit" value="Buscar">
+                <input id="characters-submit" type="submit" value="Buscar" disabled>
             </fieldset>
+            <!-- characters -->
+
+            <!-- comics -->
+            <fieldset id="buscador-comics" class="TrueHidden">
+                <!-- title, titleStartsWith, format(select), formatType(select), startYear, issueNumber, noVariants, hasDigitalIssue, limit, offset -->
+                <legend>Buscar por...:</legend>
+                <label for="comics-title">Título (exacto): </label>
+                <input type="text" id="comics-title" name="comics_title" placeholder="Morbius (2019) #6" autocomplete="off" disabled><br>
+
+                <label for="comics-titleStartsWith">Título (comienza con): </label>
+                <input type="text" id="comics-titleStartsWith" name="comics_titleStartsWith" placeholder="Amazing" autocomplete="off" disabled><br>
+
+                <label for="comics-format">Formato: </label>
+                <select name="comics_format" id="comics-format" disabled>
+                    <option value="" selected></option>
+                    <option value="comic">Cómic</option>
+                    <option value="magazine">Revista</option>
+                    <option value="trade paperback">Recopitalorio</option>
+                    <option value="hardcover">Tapa dura</option>
+                    <option value="digest">Bolsillo</option>
+                    <option value="graphic novel">Novela gráfica</option>
+                    <option value="digital comic">Cómic digital</option>
+                    <option value="infinite comic">Cómic infinito</option>
+                </select><br>
+
+                <label for="comics-formatType">Tipo-Formato: </label>
+                <select name="comics_formatType" id="comics-formatType" disabled>
+                    <option value="" selected></option>
+                    <option value="comic">Cómic</option>
+                    <option value="collection">Colección</option>
+                </select><br>
+
+                <label for="comics-startYear">Año de inicio: </label>
+                <input type="number" id="comics-startYear" name="comics_startYear" placeholder="2019" autocomplete="off" disabled><br>
+
+                <label for="comics-issueNumber">Número de tomo: </label>
+                <input type="number" id="comics-issueNumber" name="comics_issueNumber" placeholder="6" autocomplete="off" disabled><br>
+
+                <div class="checkLabel">
+                    <label for="comics-noVariants">Sin variantes: </label>
+                    <input type="checkbox" name="comics_noVariants" id="comics-noVariants" disabled>
+                </div>
+                <br>
+
+                <div class="checkLabel">
+                    <label for="comics-hasDigitalIssue">Con versión digital: </label>
+                    <input type="checkbox" id="comics-hasDigitalIssue" name="comics_hasDigitalIssue" disabled>
+                </div>
+                <br>
+
+                <label for="comics-limit">Cantidad de resultados (1-99): </label>
+                <input type="number" id="comics-limit" name="comics_limit" value="20" min="1" max="99" placeholder="20" required autocomplete="off" disabled><br>
+
+                <label for="comics-offset">Desplazamiento: </label>
+                <input type="number" id="comics-offset" name="comics_offset" value="0" min="0" placeholder="0" autocomplete="off" disabled><br>
+
+                <input id="comics-submit" type="submit" value="Buscar" disabled>
+            </fieldset>
+            <!-- comics -->
+
+            <!-- creators -->
+            <fieldset id="buscador-creators" class="TrueHidden">
+
+            </fieldset>
+            <!-- creators -->
+
+            <!-- events -->
+            <fieldset id="buscador-events" class="TrueHidden">
+
+            </fieldset>
+            <!-- events -->
+
+            <!-- series -->
+            <fieldset id="buscador-series" class="TrueHidden">
+
+            </fieldset>
+            <!-- series -->
+
+            <!-- stories -->
+            <fieldset id="buscador-stories" class="TrueHidden">
+
+            </fieldset>
+            <!-- stories -->
         </form>
         <!-- Texto que muestra cuáles de los resultados se muestran -->
         <p id="resultados"></p>

@@ -9,9 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
  * Carga la categoría general deseada, o la de personajes por defecto, de la API.
  * Disparada al cargar la página y al cambiar categorías.
  * @param type - String. El valor de tipo de fetch a hacer (characters, comics, creators, events, series, stories) (characters).
+ * @async
  */
 async function cargarEntrada(type = 'characters') {
-    const data = await index(type, true);
+    const data = await index(type, false);
     if (data === -1) {
         let msg;
         switch (type) {
@@ -71,6 +72,8 @@ async function cargarEntrada(type = 'characters') {
 
 /**
  * Habilita o deshabilita todos los campos de todos los formularios de búsqueda.
+ * 
+ * Pensar en: "¿Quiero el atributo disabled?"
  * @param bloquear - Bool. True para deshabilitar, false para habilitar (true).
  */
 function switchAble(bloquear = true) {
@@ -94,7 +97,7 @@ function switchAble(bloquear = true) {
 
 /**
  * Genera elementos de personajes para el listado según la respuesta de la API.
- * @param data - Objeto que contiene la respuesta inmediata de la API.
+ * @param {Promise} data - Objeto que contiene la respuesta inmediata de la API.
  */
 function generarPersonajes(data) {
     const listado = document.getElementById('listado');
@@ -135,28 +138,37 @@ function generarPersonajes(data) {
     switchAble(false);
 }
 
+/**
+ * Dispara la función de validación y búsqueda correspondiente según la categoría seleccionada en el select.
+ * @param {Event} e - Evento de submit del formulario.
+ */
 function dispararBuscador(e) {
     e.preventDefault();
     categoria = document.getElementById('category').value;
     console.log("Buscando en la categoría: " + categoria);
     switch (categoria) {
         case 'characters':
-            buscarPersonaje(e);
+            buscarPersonajes(e);
             break;
         case 'comics':
-            buscarComic(e);
+            // buscarComic(e);
+            // TODO
             break;
         case 'creators':
-            buscarCreador(e);
+            // buscarCreador(e);
+            // TODO
             break;
         case 'events':
-            buscarEvento(e);
+            // buscarEvento(e);
+            // TODO
             break;
         case 'series':
-            buscarSerie(e);
+            // buscarSerie(e);
+            // TODO
             break;
         case 'stories':
-            buscarHistoria(e);
+            // buscarHistoria(e);
+            // TODO
             break;
         default:
             console.log('Categoría no reconocida.');
@@ -169,7 +181,7 @@ function dispararBuscador(e) {
  * @param {Event} e - Evento submit del formulario.
  * @async
  */
-async function buscarPersonaje(e) {
+async function buscarPersonajes(e) {
     formulario = e.target;
     switchAble();
     limpiarError();
@@ -193,26 +205,26 @@ async function buscarPersonaje(e) {
 
     let args = [];
     if (name.length > 0) {
-        args.push('name=' + name);
+        args.push(('name=' + name).toString());
         console.log('Buscando por el nombre: ' + name);
     }
 
     if (nameStartsWith.length > 0) {
-        args.push('nameStartsWith=' + nameStartsWith);
+        args.push(('nameStartsWith=' + nameStartsWith).toString());
         console.log('Buscando por el nombre que comienza con: ' + nameStartsWith);
     }
 
     if (limit > 0 && limit <= 100 && limit != NaN && typeof(limit) === 'number') {
-        args.push('limit=' + limit);
+        args.push(('limit=' + limit).toString());
         console.log('Limitando a ' + limit + ' resultados.');
     }
 
     if (offset > 0 && offset != NaN && typeof(offset) === 'number') {
-        args.push('offset=' + offset);
+        args.push(('offset=' + offset).toString());
         console.log('Desplazando ' + offset + ' resultados.');
     }
 
-    const data = await buscarAPI('characters', true, ...args);
+    const data = await buscarAPI('characters', false, ...args);
     if (data === -1) {
         generarError('Error al obtener los personajes.', formulario);
         formulario.reset();

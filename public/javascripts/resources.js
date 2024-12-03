@@ -5,7 +5,7 @@
  * @returns {void | -1} Se hará un log en la consola y retorno -1 en caso de error.
  * @async
  */
-async function ImportResource(resource, destination = resource) {
+async function ImportHTMLResource(resource, destination = resource) {
     // Importar el HTML que tiene el menu.
     try {
         const response = await fetch('/resources/' + resource);

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     cargarEntrada();
-    ImportResource('menu');
-    ImportResource('footer');
+    ImportHTMLResource('menu');
+    ImportHTMLResource('footer');
     document.getElementById('buscador').addEventListener('submit', dispararBuscador);
     document.getElementById('category').addEventListener('change', switchCategory);
 });

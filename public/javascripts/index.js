@@ -185,22 +185,22 @@ function dispararBuscador(e) {
             buscarPersonajes(e);
             break;
         case 'comics':
-            buscarComic(e);
+            buscarComics(e);
             break;
         case 'creators':
-            // buscarCreador(e);
+            // buscarCreadores(e);
             // TODO
             break;
         case 'events':
-            // buscarEvento(e);
+            // buscarEventos(e);
             // TODO
             break;
         case 'series':
-            // buscarSerie(e);
+            // buscarSeries(e);
             // TODO
             break;
         case 'stories':
-            // buscarHistoria(e);
+            // buscarHistorias(e);
             // TODO
             break;
         default:
@@ -273,7 +273,7 @@ async function buscarPersonajes(e) {
  * @param {Event} e - Evento submit del formulario.
  * @async
  */
-async function buscarComic(e) {
+async function buscarComics(e) {
     formulario = e.target;
     switchAble();
     limpiarError();

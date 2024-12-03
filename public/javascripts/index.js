@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * @async
  */
 async function cargarEntrada(type = 'characters') {
+    console.clear();
     const data = await index(type, false);
     if (data === -1) {
         let msg;
@@ -177,6 +178,7 @@ function generarComics(data) {
 function dispararBuscador(e) {
     e.preventDefault();
     const category = document.getElementById('category').value;
+    console.clear();
     console.log("Buscando en la categoría: " + category);
     switch (category) {
         case 'characters':
@@ -255,7 +257,7 @@ async function buscarPersonajes(e) {
         console.log('Desplazando ' + offset + ' resultados.');
     }
 
-    const data = await buscarAPI('characters', true, ...args);
+    const data = await buscarAPI('characters', false, ...args);
     if (data === -1) {
         generarError('Error al obtener los personajes.', formulario);
         formulario.reset();
@@ -386,7 +388,7 @@ function switchCategory(e) {
     const listado = document.getElementById('listado');
     const title = document.getElementById('category-title');
     let value;
-    
+
     switch (category) {
         case "characters":
             value = "personajes";

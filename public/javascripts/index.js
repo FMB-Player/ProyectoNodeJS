@@ -282,68 +282,68 @@ async function buscarComics(e) {
     switchAble();
     limpiarError();
 
-    const comics_title = formulario.comics_title.value.trim();
-    const comics_titleStartsWith = formulario.comics_titleStartsWith.value.trim();
-    const comics_format = formulario.comics_format.value.trim();
-    const comics_formatType = formulario.comics_formatType.value.trim();
-    const comics_startYear = parseInt(formulario.comics_startYear.value.trim());
-    const comics_issueNumber = parseInt(formulario.comics_issueNumber.value.trim());
-    const comics_noVariants = formulario.comics_noVariants.checked;
-    const comics_hasDigitalIssue = formulario.comics_hasDigitalIssue.checked;
-    const comics_limit = Math.min(100, Math.max(1, parseInt(formulario.comics_limit.value.trim())));
-    const comics_offset = Math.max(0, parseInt(formulario.comics_offset.value.trim()));
+    const title = formulario.comics_title.value.trim();
+    const titleStartsWith = formulario.comics_titleStartsWith.value.trim();
+    const format = formulario.comics_format.value.trim();
+    const formatType = formulario.comics_formatType.value.trim();
+    const startYear = parseInt(formulario.comics_startYear.value.trim());
+    const issueNumber = parseInt(formulario.comics_issueNumber.value.trim());
+    const noVariants = formulario.comics_noVariants.checked;
+    const hasDigitalIssue = formulario.comics_hasDigitalIssue.checked;
+    const limit = Math.min(100, Math.max(1, parseInt(formulario.comics_limit.value.trim())));
+    const offset = Math.max(0, parseInt(formulario.comics_offset.value.trim()));
 
     const AÑO_ACTUAL = new Date().getFullYear();
 
     let args = [];
-    if (comics_title.length > 0) {
-        args.push(('title=' + comics_title).toString());
-        console.log('Buscando por el nombre: ' + comics_title);
+    if (title.length > 0) {
+        args.push(('title=' + title).toString());
+        console.log('Buscando por el nombre: ' + title);
     }
 
-    if (comics_titleStartsWith.length > 0) {
-        args.push(('titleStartsWith=' + comics_titleStartsWith).toString());
-        console.log('Buscando por el nombre que comienza con: ' + comics_titleStartsWith);
+    if (titleStartsWith.length > 0) {
+        args.push(('titleStartsWith=' + titleStartsWith).toString());
+        console.log('Buscando por el nombre que comienza con: ' + titleStartsWith);
     }
 
-    if (comics_format.length > 0) {
-        args.push(('format=' + comics_format).toString());
-        console.log('Buscando por el formato: ' + comics_format);
+    if (format.length > 0) {
+        args.push(('format=' + format).toString());
+        console.log('Buscando por el formato: ' + format);
     }
 
-    if (comics_formatType.length > 0) {
-        args.push(('formatType=' + comics_formatType).toString());
-        console.log('Buscando por el tipo de formato: ' + comics_formatType);
+    if (formatType.length > 0) {
+        args.push(('formatType=' + formatType).toString());
+        console.log('Buscando por el tipo de formato: ' + formatType);
     }
 
-    if (comics_startYear > 0 && comics_startYear <= AÑO_ACTUAL && comics_startYear != NaN && typeof(comics_startYear) === 'number') {
-        args.push(('startYear=' + comics_startYear).toString());
-        console.log('Buscando por el año de inicio: ' + comics_startYear);
+    if (startYear > 0 && startYear <= AÑO_ACTUAL && startYear != NaN && typeof(startYear) === 'number') {
+        args.push(('startYear=' + startYear).toString());
+        console.log('Buscando por el año de inicio: ' + startYear);
     }
 
-    if (comics_issueNumber > 0 && comics_issueNumber != NaN && typeof(comics_issueNumber) === 'number') {
-        args.push(('issueNumber=' + comics_issueNumber).toString());
-        console.log('Buscando por el número de issue: ' + comics_issueNumber);
+    if (issueNumber > 0 && issueNumber != NaN && typeof(issueNumber) === 'number') {
+        args.push(('issueNumber=' + issueNumber).toString());
+        console.log('Buscando por el número de issue: ' + issueNumber);
     }
 
-    if (comics_noVariants) {
+    if (noVariants) {
         args.push('noVariants=true');
         console.log('Buscando cómics sin variantes.');
     }
 
-    if (comics_hasDigitalIssue) {
+    if (hasDigitalIssue) {
         args.push('hasDigitalIssue=true');
         console.log('Buscando cómics con versión digital.');
     }
 
-    if (comics_limit > 0 && comics_limit != 20 && comics_limit <= 100 && comics_limit != NaN && typeof(comics_limit) === 'number') {
-        args.push(('limit=' + comics_limit).toString());
-        console.log('Limitando a ' + comics_limit + ' resultados.');
+    if (limit > 0 && limit != 20 && limit <= 100 && limit != NaN && typeof(limit) === 'number') {
+        args.push(('limit=' + limit).toString());
+        console.log('Limitando a ' + limit + ' resultados.');
     }
 
-    if (comics_offset > 0 && comics_offset != NaN && typeof(comics_offset) === 'number') {
-        args.push(('offset=' + comics_offset).toString());
-        console.log('Desplazando ' + comics_offset + ' resultados.');
+    if (offset > 0 && offset != NaN && typeof(offset) === 'number') {
+        args.push(('offset=' + offset).toString());
+        console.log('Desplazando ' + offset + ' resultados.');
     }
 
     const data = await buscarAPI('comics', false, ...args);

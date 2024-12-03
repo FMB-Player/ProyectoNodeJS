@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * @async
  */
 async function cargarEntrada(type = 'characters') {
-    const data = await index(type, false);
+    const data = await index(type, true);
     if (data === -1) {
         let msg;
         switch (type) {
@@ -46,6 +46,7 @@ async function cargarEntrada(type = 'characters') {
             generarPersonajes(data);
             break;
         case 'comics':
+            generarComics(data);
             // generarComics(data);
             // TODO
             break;
@@ -101,10 +102,10 @@ function switchAble(bloquear = true) {
  */
 function generarPersonajes(data) {
     const listado = document.getElementById('listado');
-    const resultados = document.getElementById('resultados');
+    const resultados_index = document.getElementById('resultados');
     const results = data.data.results;
     if (results.length === 0) {
-        resultados.textContent = '';
+        resultados_index.textContent = '';
         listado.innerHTML = '';
         generarError('No se encontraron personajes.', listado);
         switchAble(false);
@@ -134,7 +135,42 @@ function generarPersonajes(data) {
         listado.appendChild(article);
 
     });
-    resultados.textContent = 'Resultados: ' + (data.data.offset + 1) + ' - ' + (data.data.count + data.data.offset) + "/" + (data.data.total);
+    resultados_index.textContent = 'Resultados: ' + (data.data.offset + 1) + ' - ' + (data.data.count + data.data.offset) + "/" + (data.data.total);
+    switchAble(false);
+}
+
+function generarComics(data) {
+    const listado = document.getElementById('listado');
+    const resultados_index = document.getElementById('resultados');
+    const results = data.data.results;
+    if (results.length === 0) {
+        resultados_index.textContent = '';
+        listado.innerHTML = '';
+        generarError('No se encontraron comics.', listado);
+        switchAble(false);
+        return;
+    }
+    listado.innerHTML = '';
+    results.forEach(comic => {
+        const article = document.createElement('article');
+        article.className = 'comic_banner';
+
+        const img = document.createElement('img');
+        img.className = 'comic_img';
+
+        const a = document.createElement('a');
+        a.className = 'comic_title';
+
+        img.src = comic.thumbnail.path + '.' + comic.thumbnail.extension;
+        img.alt = comic.title;
+        a.textContent = comic.title;
+        a.href = '/comic' + '?id=' + comic.id;
+
+        article.appendChild(img);
+        article.appendChild(a);
+        listado.appendChild(article);
+    });
+    resultados_index.textContent = 'Resultados: ' + (data.data.offset + 1) + ' - ' + (data.data.count + data.data.offset) + "/" + (data.data.total);
     switchAble(false);
 }
 
@@ -144,15 +180,14 @@ function generarPersonajes(data) {
  */
 function dispararBuscador(e) {
     e.preventDefault();
-    categoria = document.getElementById('category').value;
-    console.log("Buscando en la categoría: " + categoria);
-    switch (categoria) {
+    const category = document.getElementById('category').value;
+    console.log("Buscando en la categoría: " + category);
+    switch (category) {
         case 'characters':
             buscarPersonajes(e);
             break;
         case 'comics':
-            // buscarComic(e);
-            // TODO
+            buscarComic(e);
             break;
         case 'creators':
             // buscarCreador(e);
@@ -171,7 +206,7 @@ function dispararBuscador(e) {
             // TODO
             break;
         default:
-            console.log('Categoría no reconocida.');
+            console.log('Error de entrada. Categoría no reconocida.');
             break;
     }
 }
@@ -214,7 +249,7 @@ async function buscarPersonajes(e) {
         console.log('Buscando por el nombre que comienza con: ' + nameStartsWith);
     }
 
-    if (limit > 0 && limit <= 100 && limit != NaN && typeof(limit) === 'number') {
+    if (limit > 0 && limit != 20 && limit <= 100 && limit != NaN && typeof(limit) === 'number') {
         args.push(('limit=' + limit).toString());
         console.log('Limitando a ' + limit + ' resultados.');
     }
@@ -224,7 +259,7 @@ async function buscarPersonajes(e) {
         console.log('Desplazando ' + offset + ' resultados.');
     }
 
-    const data = await buscarAPI('characters', false, ...args);
+    const data = await buscarAPI('characters', true, ...args);
     if (data === -1) {
         generarError('Error al obtener los personajes.', formulario);
         formulario.reset();
@@ -233,6 +268,91 @@ async function buscarPersonajes(e) {
     }
 
     generarPersonajes(data);
+}
+
+/**
+ * Busca CÓMICS en la API de Marvel según los campos del formulario.
+ * @param {Event} e - Evento submit del formulario.
+ * @async
+ */
+async function buscarComic(e) {
+    formulario = e.target;
+    switchAble();
+    limpiarError();
+
+    const comics_title = formulario.comics_title.value.trim();
+    const comics_titleStartsWith = formulario.comics_titleStartsWith.value.trim();
+    const comics_format = formulario.comics_format.value.trim();
+    const comics_formatType = formulario.comics_formatType.value.trim();
+    const comics_startYear = parseInt(formulario.comics_startYear.value.trim());
+    const comics_issueNumber = parseInt(formulario.comics_issueNumber.value.trim());
+    const comics_noVariants = formulario.comics_noVariants.checked;
+    const comics_hasDigitalIssue = formulario.comics_hasDigitalIssue.checked;
+    const comics_limit = Math.min(100, Math.max(1, parseInt(formulario.comics_limit.value.trim())));
+    const comics_offset = Math.max(0, parseInt(formulario.comics_offset.value.trim()));
+
+    const AÑO_ACTUAL = new Date().getFullYear();
+
+    let args = [];
+    if (comics_title.length > 0) {
+        args.push(('title=' + comics_title).toString());
+        console.log('Buscando por el nombre: ' + comics_title);
+    }
+
+    if (comics_titleStartsWith.length > 0) {
+        args.push(('titleStartsWith=' + comics_titleStartsWith).toString());
+        console.log('Buscando por el nombre que comienza con: ' + comics_titleStartsWith);
+    }
+
+    if (comics_format.length > 0) {
+        args.push(('format=' + comics_format).toString());
+        console.log('Buscando por el formato: ' + comics_format);
+    }
+
+    if (comics_formatType.length > 0) {
+        args.push(('formatType=' + comics_formatType).toString());
+        console.log('Buscando por el tipo de formato: ' + comics_formatType);
+    }
+
+    if (comics_startYear > 0 && comics_startYear <= AÑO_ACTUAL && comics_startYear != NaN && typeof(comics_startYear) === 'number') {
+        args.push(('startYear=' + comics_startYear).toString());
+        console.log('Buscando por el año de inicio: ' + comics_startYear);
+    }
+
+    if (comics_issueNumber > 0 && comics_issueNumber != NaN && typeof(comics_issueNumber) === 'number') {
+        args.push(('issueNumber=' + comics_issueNumber).toString());
+        console.log('Buscando por el número de issue: ' + comics_issueNumber);
+    }
+
+    if (comics_noVariants) {
+        args.push('noVariants=true');
+        console.log('Buscando cómics sin variantes.');
+    }
+
+    if (comics_hasDigitalIssue) {
+        args.push('hasDigitalIssue=true');
+        console.log('Buscando cómics con versión digital.');
+    }
+
+    if (comics_limit > 0 && comics_limit != 20 && comics_limit <= 100 && comics_limit != NaN && typeof(comics_limit) === 'number') {
+        args.push(('limit=' + comics_limit).toString());
+        console.log('Limitando a ' + comics_limit + ' resultados.');
+    }
+
+    if (comics_offset > 0 && comics_offset != NaN && typeof(comics_offset) === 'number') {
+        args.push(('offset=' + comics_offset).toString());
+        console.log('Desplazando ' + comics_offset + ' resultados.');
+    }
+
+    const data = await buscarAPI('comics', true, ...args);
+    if (data === -1) {
+        generarError('Error al obtener los comics.', formulario);
+        formulario.reset();
+        switchAble(false);
+        return;
+    }
+
+    generarComics(data);
 }
 
 /**
@@ -267,6 +387,7 @@ function generarError(msg, parent) {
 function switchCategory(e) {
     const formulario = document.getElementById('buscador');
     const select = e.target;
+    const listado = document.getElementById('listado');
 
     const fieldsets = formulario.querySelectorAll('fieldset');
     fieldsets.forEach(fieldset => {
@@ -276,6 +397,8 @@ function switchCategory(e) {
             fieldset.classList.add('TrueHidden');
         }
     });
+    formulario.reset();
+    listado.innerHTML = '';
     cargarEntrada(select.value);
     switchAble(true);
 }

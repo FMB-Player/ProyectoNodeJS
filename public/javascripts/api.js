@@ -18,7 +18,10 @@ async function index(type = 'characters', print = false) {
     try {
         const response = await fetch(URLsearchCategory(type, print));
         const data = await response.json();
-        return data;
+        if (response.ok && data.code === 200) {
+            return data;
+        }
+        throw new Error( 'Error: ' + (data.status, data.data.code, data.data.status));
     } catch (error) {
         console.log(error);
         return (-1);
@@ -51,7 +54,12 @@ async function buscarAPI(type, print, ...attributes) {
                 }
             });
             const data = await response.json();
-            return data;
+            if (response.ok && data.code == 200) {
+                return data;
+            }
+            console.log(data);
+            console.log(data.data);
+            return (-1);
         } catch (error) {
             console.log(error);
             return (-1);
@@ -88,6 +96,8 @@ function URLsearchBy(type, print, ...args) {
     let req = API + type;
     let hasFoundFirstElement = false;
     args.forEach(arg => {
+        arg = arg.split('=');
+        arg = arg[0] + '=' + encodeURIComponent(arg[1]);
         if (!hasFoundFirstElement) {
             req += '?';
             hasFoundFirstElement = true;

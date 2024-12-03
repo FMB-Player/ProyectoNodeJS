@@ -54,9 +54,9 @@ body {
 
 /* Estilo de formulario buscador (Y select categorías) */
 
-/* Estilo de visualizador de personajes */
+/* Estilo de visualizador de listas */
 
-  a.personaje_name {
+  a.personaje_name, a.comic_title {
     color: #fff;
     text-align: center;
     padding: 0.5em;
@@ -79,6 +79,15 @@ body {
     margin: 1em auto;
   }
 
+  article.comic_banner {
+    display: inline-grid;
+    border: 1px solid black;
+    border-radius: var(--article-radius);
+    width: min-content;
+    height: var(--ArticleWidth);
+    margin: 3em auto 6em auto;
+  }
+
   img.personaje_img {
     height: calc(var(--ArticleWidth) - 2em);
     width: calc(var(--ArticleWidth) - 2em);
@@ -88,4 +97,13 @@ body {
     object-position: center;
   }
 
-/* Estilo de visualizador de personajes */
+  img.comic_img {
+    height: calc(var(--ArticleWidth) - 2em);
+    width: calc(var(--ArticleWidth) - 8em);
+    border-top-left-radius: var(--article-radius);
+    border-top-right-radius: var(--article-radius);
+    object-fit: cover;
+    object-position: center;
+  }
+
+/* Estilo de visualizador de listas */

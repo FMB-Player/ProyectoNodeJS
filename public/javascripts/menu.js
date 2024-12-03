@@ -7,10 +7,12 @@ function activePage() {
     const currentUrl = window.location.pathname;
 
     links.forEach(link => {
-        const href = link.getAttribute('href');
+        let href = link.getAttribute('href');
 
         if (href === currentUrl) {
             link.classList.add('active');
+        } else {
+            link.classList.remove('active');
         }
     });
 }

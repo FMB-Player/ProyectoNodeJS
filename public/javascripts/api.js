@@ -123,7 +123,7 @@ function URLsearchBy(type, print, ...args) {
 /**
  * Genera nuevos timestamp y hash válidos para la API.
  */
-function generateHash(){
+function generateHash() {
     ts = new Date().getTime().toString();
     hash = CryptoJS.MD5(ts + KEY_PRIVATE + KEY_PUBLIC).toString();
 }

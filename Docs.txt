@@ -28,7 +28,7 @@ Body-parser es un middleware para traducir el body de la request
     Si llego, voy a permitir que se elijan categorías de la API en lugar de input de URL como se pide, porque hacer las cosas de esta manera me parece más realista a pesar de ser más complicado que simplemente la URL.
 
 # TODO: Vista de personaje ID.
-# TODO: Vista general de comics, creators, events, series, stories.
+# TODO: Vista general de creators, events, series, stories.
 # TODO: Formularios de búsquedas según categoría.
-# TODO: Funciones de cambio y búsqueda según categoría.
+# TODO: Funciones de búsqueda según categoría.
 # TODO: Vista de (comics, creators, events, series, stories) ID.

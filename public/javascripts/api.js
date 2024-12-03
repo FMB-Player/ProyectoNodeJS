@@ -1,8 +1,8 @@
 const KEY_PUBLIC = 'b79f16edb36f348e91d53ef2bf364c6d';
 const KEY_PRIVATE = '31815d4440e266e989eb16be6959c875684ae745'
 const API = 'https://gateway.marvel.com:443/v1/public/';
-var ts = new Date().getTime().toString();
-var hash = CryptoJS.MD5(ts + KEY_PRIVATE + KEY_PUBLIC).toString();
+var ts;
+var hash;
 
 /**
  * Fetch COMPLETO del listado deseado de la API de Marvel.
@@ -78,6 +78,7 @@ async function buscarAPI(type, print, ...attributes) {
  * @returns {String} String. URL text.
  */
 function URLsearchCategory(value = 'characters', print = false) {
+    generateHash();
     url = (API + value + '?apikey=' + KEY_PUBLIC + '&ts=' + ts + '&hash=' + hash).toString();
     if (print) {
         console.log(url)
@@ -93,6 +94,7 @@ function URLsearchCategory(value = 'characters', print = false) {
  * @returns {String} String. URL text.
  */
 function URLsearchBy(type, print, ...args) {
+    generateHash();
     let req = API + type;
     let hasFoundFirstElement = false;
     args.forEach(arg => {
@@ -116,4 +118,12 @@ function URLsearchBy(type, print, ...args) {
         console.log(req);
     }
     return req;
+}
+
+/**
+ * Genera nuevos timestamp y hash válidos para la API.
+ */
+function generateHash(){
+    ts = new Date().getTime().toString();
+    hash = CryptoJS.MD5(ts + KEY_PRIVATE + KEY_PUBLIC).toString();
 }

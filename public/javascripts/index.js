@@ -49,18 +49,22 @@ async function cargarEntrada(type = 'characters') {
             generarComics(data);
             break;
         case 'creators':
+            switchAble(false);  //TEMP.
             // generarCreadores(data);
             // TODO
             break;
         case 'events':
+            switchAble(false);  //TEMP.
             // generarEventos(data);
             // TODO
             break;
         case 'series':
+            switchAble(false);  //TEMP.
             // generarSeries(data);
             // TODO
             break;
         case 'stories':
+            switchAble(false);  //TEMP.
             // generarHistorias(data);
             // TODO
             break;

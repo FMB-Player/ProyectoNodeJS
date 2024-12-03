@@ -136,6 +136,10 @@ function generarPersonajes(data) {
     switchAble(false);
 }
 
+/**
+ * Genera elementos de cómics para el listado según la respuesta de la API.
+ * @param {Promise} data - Objeto que contiene la respuesta inmediata de la API.
+ */
 function generarComics(data) {
     const listado = document.getElementById('listado');
     const resultados_index = document.getElementById('resultados');
@@ -215,7 +219,7 @@ function dispararBuscador(e) {
  * @async
  */
 async function buscarPersonajes(e) {
-    formulario = e.target;
+    const formulario = e.target;
     switchAble();
     limpiarError();
 
@@ -274,7 +278,7 @@ async function buscarPersonajes(e) {
  * @async
  */
 async function buscarComics(e) {
-    formulario = e.target;
+    const formulario = e.target;
     switchAble();
     limpiarError();
 

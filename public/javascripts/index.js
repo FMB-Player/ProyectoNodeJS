@@ -382,12 +382,48 @@ function generarError(msg, parent) {
  */
 function switchCategory(e) {
     const formulario = document.getElementById('buscador');
-    const select = e.target;
+    const category = e.target.value;
     const listado = document.getElementById('listado');
+    const title = document.getElementById('category-title');
+    let value;
+    
+    switch (category) {
+        case "characters":
+            value = "personajes";
+            break;
+
+        case "comics":
+            value = "cómics";
+            break;
+
+        case "creators":
+            value = "creadores";
+            break;
+
+        case "events":
+            value = "eventos";
+            break;
+
+        case "series":
+            value = "series";
+            break;
+
+        case "stories":
+            value = "historias";
+            break;
+        default:
+            value = "";
+            break;
+    }
+    if (value !== "") {
+        title.textContent = "Listado de " + value;
+    } else {
+        title.textContent = "Página de listados";
+    }
 
     const fieldsets = formulario.querySelectorAll('fieldset');
     fieldsets.forEach(fieldset => {
-        if (fieldset.id === 'buscador-' + select.value) {
+        if (fieldset.id === 'buscador-' + category) {
             fieldset.classList.remove('TrueHidden');
         } else {
             fieldset.classList.add('TrueHidden');
@@ -395,6 +431,6 @@ function switchCategory(e) {
     });
     formulario.reset();
     listado.innerHTML = '';
-    cargarEntrada(select.value);
+    cargarEntrada(category);
     switchAble(true);
 }

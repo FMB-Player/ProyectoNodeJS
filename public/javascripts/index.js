@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * @async
  */
 async function cargarEntrada(type = 'characters') {
-    const data = await index(type, true);
+    const data = await index(type, false);
     if (data === -1) {
         let msg;
         switch (type) {
@@ -47,8 +47,6 @@ async function cargarEntrada(type = 'characters') {
             break;
         case 'comics':
             generarComics(data);
-            // generarComics(data);
-            // TODO
             break;
         case 'creators':
             // generarCreadores(data);
@@ -83,17 +81,11 @@ function switchAble(bloquear = true) {
     const category_select = document.getElementById('category');
 
     const lista = [...inputs_formulario, ...selects_formulario, category_select];
-    if (bloquear) {
-        lista.forEach(element => {
-            element.disabled = true;
-            return true;
-        });
-    } else {
-        lista.forEach(element => {
-            element.disabled = false;
-            return false;
-        });
-    }
+
+    lista.forEach(element => {
+        element.disabled = bloquear;
+        return bloquear;
+    });
 }
 
 /**
@@ -344,7 +336,7 @@ async function buscarComic(e) {
         console.log('Desplazando ' + comics_offset + ' resultados.');
     }
 
-    const data = await buscarAPI('comics', true, ...args);
+    const data = await buscarAPI('comics', false, ...args);
     if (data === -1) {
         generarError('Error al obtener los comics.', formulario);
         formulario.reset();

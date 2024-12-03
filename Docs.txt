@@ -31,3 +31,4 @@ Body-parser es un middleware para traducir el body de la request
 # TODO: Formularios de búsquedas según categoría.
 # TODO: Funciones de búsqueda según categoría.
 # TODO: Vista de (characters, comics, creators, events, series, stories) ID.
+# TODO: Traslado de la API a backend.

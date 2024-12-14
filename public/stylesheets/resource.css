@@ -43,13 +43,15 @@
         padding: 8px 10px;
         background-color: black;
         border-radius: 9px;
+        transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     .menu_element:hover, .active {
         background-color: #fff;
         cursor: pointer;
         color: black;
-        transition: background-color 0.5s ease, color 0.5s ease;
+        transform: scale(1.02);
+        transition: background-color 0.5s ease, color 0.5s ease, transform 0.1s ease;
     }
 
     .menu_list {
@@ -61,11 +63,15 @@
 
     }
 
+    /* FIXME */
 /* Menu style */
 
 /* Footer style */
 
-    #footer {
+    /* La clase de loadedFooter es para que el footer no reciba estilos antes de que reciba los datos que debe contener.
+    #footer es el placeholder que solo define dónde en el archivo se va a poner el footer.
+    Los datos se ubican en el recurso "footer.html". */
+    #footer.loadedFooter {
         background-color: var(--outskirt-color);
         color: #fff;
         display: flex;
@@ -79,10 +85,18 @@
         flex-basis: calc(50% - 1em);
     }
 
+    /* FIXME. Esto sería mejor si no estuviera. */
+    #footer.NoResults {
+        min-height: 0;
+        position: absolute;
+        bottom: 0;
+    }
+
     #footer a, #footer #copyright {
         color: #fff;
     }
 
+    /* FIXME */
 /* Footer style */
 
 /* Misc */
@@ -94,3 +108,6 @@
     .hidden {
         display: hidden !important;
     }
+
+    /* FIXME: @footer style: Esto no es atractivo ni ágil, hay que mejorarlo y hacer que no se necesite andar cambiando clases. */
+    /* FIXME: @header style: El header debería ser fijo en la parte superior de la pantalla y permanecer cuando el usuario se desplace. */

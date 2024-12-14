@@ -27,6 +27,11 @@ Body-parser es un middleware para traducir el body de la request
     Al iniciar el servidor se entra a bin/www, que contiene información que cuasi-entiendo sobre la aplicación y configuración, que luego comunica con app.js, que tiene información que entiendo relativamente mejor respecto a lo mismo, y de ahí va a routes y a los archivos que yo creé. Por inicio de envía a la pantalla principal/de bienvenida (el index en personajes) la vista (HTML file) importa múltiples recursos, incluyendo los componentes generales mediante el script de inyección de recursos, múltiples css para todos los recursos estilizados, recursos de Crypto, script de la vista actual y los scripts de API (otra vez, soy consiente que debería estar en backend, pero quiero entregar y después lo voy a arreglar, no quiero romper algo que funciona tan cerca de la fecha límite).
     Si llego, voy a permitir que se elijan categorías de la API en lugar de input de URL como se pide, porque hacer las cosas de esta manera me parece más realista a pesar de ser más complicado que simplemente la URL.
 
+
+* En caso de notas de FixMe o ToDo, los errores se deben detallar en esta sección, señalarse al pie del archivo que contiene el error y se debe declarar en la línea o función con un simple comentario FIXME o TODO respectivamente.
+* Por ejemplo, un FixMe de la API en una función se debe detallarse aquí, explicando cómo estaría arreglado y/o qué es el problema. En el archivo de API, se debe señalar // FIXME: @functionName. Y en la función en sí se debe poner solo un FIXME.
+* Este formato no es obligatorio, es solo una recomendación para establecer un formato esperado. Sí es obligatorio señalar en este archivo cada ToDo y FixMe para poder buscar todos los problemas y pendientes en un sólo lugar junto con su naturaleza para poder saber "si yo puedo arreglarlo o lo dejo a alguien que sepa cómo hacerlo", pero si se quiere definir a detalle en la línea exacta u omitir el señalar al final del archivo, realmente no hay problema.
+
 # TODO: Vista general de creators, events, series, stories.
 # TODO: Formularios de búsquedas según categoría.
 # TODO: Funciones de búsqueda según categoría.

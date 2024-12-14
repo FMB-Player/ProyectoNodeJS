@@ -32,3 +32,8 @@ async function ImportHTMLResource(resource, destination = resource) {
         return -1;
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    ImportHTMLResource('menu');
+    ImportHTMLResource('footer');
+});

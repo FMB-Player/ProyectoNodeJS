@@ -1,10 +1,12 @@
+var firstTrip = true;
+
 document.addEventListener('DOMContentLoaded', () => {
-    cargarEntrada();
-    ImportHTMLResource('menu');
-    ImportHTMLResource('footer');
+    document.getElementById('footer').classList.add('loadedFooter', 'NoResults');
     document.getElementById('buscador').addEventListener('submit', dispararBuscador);
     document.getElementById('category').addEventListener('change', switchCategory);
+    cargarEntrada();
 });
+
 /**
  * Carga la categoría general deseada, o la de personajes por defecto, de la API.
  * Disparada al cargar la página y al cambiar categorías.
@@ -41,6 +43,11 @@ async function cargarEntrada(type = 'characters') {
         }
             generarError(msg, document.getElementById('listado'));
             return;
+    }
+    if (firstTrip) {
+        Copyright(data);
+        moveFooter(true);
+        firstTrip = false;
     }
     switch (type) {
         case 'characters':
@@ -379,6 +386,7 @@ function generarError(msg, parent) {
     p.textContent = msg;
     parent.appendChild(p);
     console.log(msg);
+    switchAble(false);
 }
 
 /**
@@ -440,3 +448,28 @@ function switchCategory(e) {
     cargarEntrada(category);
     switchAble(true);
 }
+
+/**
+ * Coloca el attributionText de un llamado a API en el link de copyright del footer.
+ * 
+ * @param {String} data - resultado inmediato del retorno de llamado a la API.
+ */
+function Copyright(data) {
+    const footerCopy = document.getElementById('copyright');
+    footerCopy.textContent = data.attributionText;
+}
+
+/**
+ * Mueve el pie de página [fondo o libre] según sea necesario.
+ * 
+ * IF results, se quita la clase 'NoResults', lo que hace que el footer se ubique libremente para que los resultados lo desplace.
+ * 
+ * IF NOT results, se le pone la clase, lo que hace que se fuerce a mostrar en el fondo de la pantalla.
+ * @param {Boolean} results - si hay resultados o no en vista (true).
+ */
+function moveFooter(results = true) {
+    const footer = document.getElementById('footer');
+    results ? footer.classList.remove('NoResults') : footer.classList.add('NoResults');
+}   // FIXME
+
+// FIXME: @moveFooter: Esto no es atractivo ni ágil, hay que mejorarlo y hacer que no se necesite andar cambiando clases.

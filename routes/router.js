@@ -4,9 +4,13 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  // console.log(path.join(__dirname + '/../views/index.html'));
   res.sendFile(path.join(__dirname + '/../views/index.html'));
 });
+
+// Ruta de página de información.
+router.get('/about', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../views/about.html'));
+})
 
 // show personaje
 router.get('/personaje/:id', function(req, res) {

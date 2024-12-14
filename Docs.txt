@@ -32,3 +32,6 @@ Body-parser es un middleware para traducir el body de la request
 # TODO: Funciones de búsqueda según categoría.
 # TODO: Vista de (characters, comics, creators, events, series, stories) ID.
 # TODO: Traslado de la API a backend.
+
+# FIXME: El footer debe mostrarse en el fondo de la pantalla si no hay elementos para empujarlo hacia abajo.
+# FIXME: El header debe permanecer fijo en la parte superior de la pantalla y permanecer cuando el usuario se desplace.

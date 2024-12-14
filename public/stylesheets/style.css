@@ -13,6 +13,7 @@ body {
 
 .main {
   margin: 1%;
+  cursor: default;
 }
 
 /* Estilo de formulario buscador (Y select categorías) */
@@ -68,6 +69,20 @@ body {
   #listado {
     display: flex;
     flex-wrap: wrap;
+  }
+
+  article:hover, article:focus-within {
+    transform: scale(1.05);
+    transition: 0.25s;
+    a {
+      background-color: #fff;
+      color: #000;
+      transition: all 0.25s;
+    }
+  }
+
+  article, article * {
+    transition: all 0.125s;
   }
 
   article.personaje_banner {

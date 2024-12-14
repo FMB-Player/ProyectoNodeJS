@@ -43,7 +43,7 @@
         padding: 8px 10px;
         background-color: black;
         border-radius: 9px;
-        transition: background-color 0.25s ease, color 0.25s ease;
+        transition: background-color 0.25s cubic-bezier(1, 0, 0, 0), color 0.25s cubic-bezier(1, 0, 0, 0);
     }
 
     .menu_element:hover, .active {
@@ -51,7 +51,7 @@
         cursor: pointer;
         color: black;
         transform: scale(1.02);
-        transition: background-color 0.5s ease, color 0.5s ease, transform 0.1s ease;
+        transition: background-color 0.5s cubic-bezier(1, 0, 0, 0), color 0.5s cubic-bezier(1, 0, 0, 0), transform 0.1s ease;
     }
 
     .menu_list {

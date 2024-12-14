@@ -46,7 +46,7 @@
         transition: background-color 0.25s cubic-bezier(1, 0, 0, 0), color 0.25s cubic-bezier(1, 0, 0, 0);
     }
 
-    .menu_element:hover, .active {
+    .menu_element:hover, .active, .menu_element:focus {
         background-color: #fff;
         cursor: pointer;
         color: black;
@@ -106,7 +106,7 @@
     }
 
     .hidden {
-        display: hidden !important;
+        visibility: hidden !important;
     }
 
     /* FIXME: @footer style: Esto no es atractivo ni ágil, hay que mejorarlo y hacer que no se necesite andar cambiando clases. */
